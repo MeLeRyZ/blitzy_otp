@@ -23,10 +23,8 @@ defmodule Blitzy.CLI do
     case options do
       {[requests: n], [url], []} ->
         do_requests(n, url, nodes)
-
       _ ->
         do_help
-
     end
   end
 
@@ -61,7 +59,7 @@ defmodule Blitzy.CLI do
   defp parse_results(results) do
     {successes, _failures} =
       results
-        |> Enum.partition(fn x ->
+        |> Enum.split_with(fn x ->
              case x do
                {:ok, _} -> true
                _        -> false
